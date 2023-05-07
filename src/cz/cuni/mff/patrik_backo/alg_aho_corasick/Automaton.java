@@ -15,7 +15,7 @@ public class Automaton{
     public Automaton(){
         root = new Node();
         currState = root;
-        emptyList = new ArrayList<>();
+        emptyList = Collections.unmodifiableList(new ArrayList<>());
     }
 
     static public Automaton buildAutomaton(String[] words){
@@ -32,7 +32,7 @@ public class Automaton{
     public List<String> getWords(){
         Node currNode = currState;
         if ((!currNode.isWord) && (currNode.shortcut == null)) 
-            return Collections.unmodifiableList(emptyList);
+            return emptyList;
 
         List<String> words = new ArrayList<>();
         
@@ -43,7 +43,7 @@ public class Automaton{
         while(currNode.shortcut != null){
             currNode = currNode.shortcut;
         }
-        return Collections.unmodifiableList(words);
+        return words;
     }
 
     private class Node{
