@@ -8,9 +8,9 @@ import java.util.LinkedList;
 import java.util.Collections;
 
 public class Automaton{
-    Node root;
-    Node currState;
-    final List<String> emptyList;
+    private Node root;
+    private Node currState;
+    private final List<String> emptyList;
 
     public Automaton(){
         root = new Node();
@@ -42,6 +42,7 @@ public class Automaton{
 
         while(currNode.shortcut != null){
             currNode = currNode.shortcut;
+            words.add(currNode.prefix);
         }
         return words;
     }
@@ -64,9 +65,13 @@ public class Automaton{
 
     private void buildShortcuts(){
         Deque<Node> queue = new LinkedList<>();
-        root.trailingEdge = root;
+        root.trailingEdge = null;
         root.shortcut = null;
-        queue.add(root);
+        for (Node child : root.children.values()){
+            child.trailingEdge = root;
+            child.shortcut = null;
+            queue.add(child);
+        }
         while(!queue.isEmpty()){
             Node currNode = queue.remove();
             for(Node child : currNode.children.values()){
