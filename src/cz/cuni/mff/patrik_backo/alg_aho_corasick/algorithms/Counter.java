@@ -1,4 +1,4 @@
-package cz.cuni.mff.patrik_backo.alg_aho_corasick;
+package cz.cuni.mff.patrik_backo.alg_aho_corasick.algorithms;
 
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -12,7 +12,6 @@ public class Counter extends Algorithm{
         super(text, output, words);
         counter = new HashMap<>();
     }
-
 
     public PrintWriter run() throws IOException{
         int c;

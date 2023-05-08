@@ -1,4 +1,6 @@
-package cz.cuni.mff.patrik_backo.alg_aho_corasick;
+package cz.cuni.mff.patrik_backo.alg_aho_corasick.algorithms;
+
+import cz.cuni.mff.patrik_backo.alg_aho_corasick.automatons.Automaton;
 
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public abstract class Algorithm {
         this.text = text;
         this.words = words;
         this.output = output;
-        automaton = Automaton.buildAutomaton(words);
+        automaton = Automaton.build(words);
     }
 
     public abstract PrintWriter run() throws IOException;

@@ -1,4 +1,4 @@
-package cz.cuni.mff.patrik_backo.alg_aho_corasick;
+package cz.cuni.mff.patrik_backo.alg_aho_corasick.algorithms;
 
 import java.io.IOException;
 import java.io.PrintWriter;

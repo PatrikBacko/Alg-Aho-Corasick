@@ -1,4 +1,4 @@
-package cz.cuni.mff.patrik_backo.alg_aho_corasick;
+package cz.cuni.mff.patrik_backo.alg_aho_corasick.automatons;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.LinkedList;
 import java.util.Collections;
 
 public class Automaton{
-    private Node root;
-    private Node currState;
-    private final List<String> emptyList;
+    protected Node root;
+    protected Node currState;
+    protected final List<String> emptyList;
 
     public Automaton(){
         root = new Node();
@@ -18,11 +18,19 @@ public class Automaton{
         emptyList = Collections.unmodifiableList(new ArrayList<>());
     }
 
-    static public Automaton buildAutomaton(String[] words){
+    static public Automaton build(String[] words){
         Automaton automaton = new Automaton();
         automaton.buildTrie(words);
         automaton.buildShortcuts();
         return automaton;
+    }
+
+    public void resetState(){
+        currState = root;
+    }
+
+    public boolean isRoot(){
+        return currState == root;
     }
 
     public void stepForward(char c){
@@ -33,7 +41,10 @@ public class Automaton{
         Node currNode = currState;
         if ((!currNode.isWord) && (currNode.shortcut == null)) 
             return emptyList;
+        return findWords(currNode);
+    }
 
+    protected List<String> findWords(Node currNode){
         List<String> words = new ArrayList<>();
         
         if(currNode.isWord){
@@ -47,7 +58,7 @@ public class Automaton{
         return words;
     }
 
-    private class Node{
+    protected class Node{
         HashMap<Character, Node> children;
         String prefix;
         Node shortcut;
@@ -63,7 +74,7 @@ public class Automaton{
         }
     }
 
-    private void buildShortcuts(){
+    protected void buildShortcuts(){
         Deque<Node> queue = new LinkedList<>();
         root.trailingEdge = null;
         root.shortcut = null;
@@ -88,7 +99,7 @@ public class Automaton{
         }
     }
 
-    private Node step(Node node, char c){
+    protected Node step(Node node, char c){
         while (node != root){
             if(node.children.containsKey(c)){
                 return node.children.get(c);
@@ -103,7 +114,7 @@ public class Automaton{
         return root;
     }
 
-    private void buildTrie(String[] words){
+    protected void buildTrie(String[] words){
         for(String word : words){
             insertWord(word);
         }
