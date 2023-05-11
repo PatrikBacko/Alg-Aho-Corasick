@@ -2,30 +2,34 @@ package cz.cuni.mff.patrik_backo.alg_aho_corasick;
 
 import cz.cuni.mff.patrik_backo.alg_aho_corasick.algorithms.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args){
-        args = new String[]{"abc"};
-        HashMap<String, String> wordMap = new HashMap<String, String>();
-        Reader reader= new InputStreamReader(System.in);
-        wordMap.put("abc", "***");
-        // Algorithm algorithm = new Counter(new InputStreamReader(System.in), new PrintWriter(System.out), args);
-        // Algorithm algorithm2 = new SignalPossition(new InputStreamReader(System.in), new PrintWriter(System.out), args);
-        // Algorithm algorithm3 = new Censor(new InputStreamReader(System.in), new PrintWriter(System.out), args);
-        Algorithm algorithm4 = new Replacer(reader, new PrintWriter(System.out), args, wordMap);
-
+        BufferedReader reader= new BufferedReader(new InputStreamReader(System.in));
         try {
-            // algorithm.run();
-            // algorithm2.run();
-            // algorithm3.run();
-            algorithm4.run();
-        } catch (IOException e) {
+            Algorithm algorithm = loadInput.parseArguments(args, reader);
+            algorithm.run();
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void printHelp(){
+        System.out.println("Usage: java -jar alg_aho_corasick.jar [algorithm] [options]");
+        System.out.println("Algorithms:");
+        System.out.println("counter - counts occurences of words in text");
+        System.out.println("signal - prints positions of words in text");
+        System.out.println("censor - censors words in text");
+        System.out.println("replacer - replaces words in text");
     }
 }

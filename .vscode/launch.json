@@ -6,11 +6,43 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Main",
+            "name": "counter",
             "request": "launch",
             "mainClass": "cz.cuni.mff.patrik_backo.alg_aho_corasick.Main",
             "projectName": "Alg-Aho-Corasick_121f655c",
-            "args": ""
+            "args": "counter"
+        },
+        {
+            "type": "java",
+            "name": "censor",
+            "request": "launch",
+            "mainClass": "cz.cuni.mff.patrik_backo.alg_aho_corasick.Main",
+            "projectName": "Alg-Aho-Corasick_121f655c",
+            "args": "censor"
+        },
+        {
+            "type": "java",
+            "name": "censor with censor char",
+            "request": "launch",
+            "mainClass": "cz.cuni.mff.patrik_backo.alg_aho_corasick.Main",
+            "projectName": "Alg-Aho-Corasick_121f655c",
+            "args": "censor ."
+        },
+        {
+            "type": "java",
+            "name": "signal",
+            "request": "launch",
+            "mainClass": "cz.cuni.mff.patrik_backo.alg_aho_corasick.Main",
+            "projectName": "Alg-Aho-Corasick_121f655c",
+            "args": "signal"
+        },
+        {
+            "type": "java",
+            "name": "replacer",
+            "request": "launch",
+            "mainClass": "cz.cuni.mff.patrik_backo.alg_aho_corasick.Main",
+            "projectName": "Alg-Aho-Corasick_121f655c",
+            "args": "replacer"
         }
     ]
 }

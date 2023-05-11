@@ -12,11 +12,11 @@ public class SignalPossition extends Algorithm{
 
     public PrintWriter run() throws IOException{
         int c;
-        int possition = 0;
+        int possition = 1;
         while((c = text.read()) != -1){
             automaton.stepForward((char) c);
             for(String word : automaton.getWords()){
-                output.println(word + " " + (possition - word.length() + 1) +" " + possition);
+                output.println(word + " " + (possition - word.length()) + " " + (possition - 1));
             }
             possition++;
         }
