@@ -5,14 +5,30 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 
+/**
+ * class Counter, extension of Algorithm - counts occurences of words in text
+ * @see Algorithm
+ */
 public class Counter extends Algorithm{
     private HashMap<String, Integer> counter;
 
+    /**
+     * constructor, calls super constructor
+     * hashmap is used to store occurences of words
+     * @param text text to search in
+     * @param output output to write to
+     * @param words words to search for
+     */
     public Counter(Reader text, PrintWriter output, String[] words){
         super(text, output, words);
         counter = new HashMap<>();
     }
 
+    /**
+     * counts occurences of words in text
+     * @return PrintWriter with counted occurences
+     * @throws IOException
+     */
     public PrintWriter run() throws IOException{
         int c;
         while((c = text.read()) != -1){

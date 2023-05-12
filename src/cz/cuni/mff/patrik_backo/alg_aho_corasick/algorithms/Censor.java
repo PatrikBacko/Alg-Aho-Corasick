@@ -7,13 +7,29 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * Extension of class Algorithm, censors (removes) words from given text
+ * @see Algorithm
+ */
 public class Censor extends Algorithm {
 
+    /**
+     * Constructor, calls super constructor
+     * MemoryAutomaton is used because after removeing word from text, we need to load past automaton state
+     * @param text text to search in
+     * @param output output to write to
+     * @param words words to search for
+     */
     public Censor(Reader text, PrintWriter output, String[] words){
         super(text, output, words);
         automaton = MemoryAutomaton.build(words);
     }
 
+    /**
+     * Censors (removes) words from given text
+     * @return PrintWriter with censored text
+     * @throws IOException
+     */
     public PrintWriter run() throws IOException{
         int c;
         List<Character> buffer = new ArrayList<Character>();
