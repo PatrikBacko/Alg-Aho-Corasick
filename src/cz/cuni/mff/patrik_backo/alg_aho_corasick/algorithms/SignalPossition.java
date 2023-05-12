@@ -28,10 +28,11 @@ public class SignalPossition extends Algorithm{
     public PrintWriter run() throws IOException{
         int c;
         int possition = 1;
+        output.println("\nPositions:");
         while((c = text.read()) != -1){
             automaton.stepForward((char) c);
             for(String word : automaton.getWords()){
-                output.println(word + " " + (possition - word.length()) + " " + (possition - 1));
+                output.println(word + ": [" + (possition - word.length()) + "," + (possition - 1) + "]");
             }
             possition++;
         }

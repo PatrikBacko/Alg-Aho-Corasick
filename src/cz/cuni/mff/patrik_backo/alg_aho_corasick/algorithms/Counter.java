@@ -41,11 +41,12 @@ public class Counter extends Algorithm{
                 }
             }
         }
+        output.println("\nCounted occurences:");
         for(String word : words){
             if(counter.containsKey(word)){
-                output.println(word + " " + counter.get(word));
+                output.println(word + " - " + counter.get(word));
             }else{
-                output.println(word + " 0");
+                output.println(word + " - 0");
             }
         }
         output.flush();

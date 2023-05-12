@@ -35,6 +35,9 @@ public class Replacer extends Algorithm{
     public PrintWriter run() throws IOException{
         int c;
         List<String> buffer = new ArrayList<String>();
+
+        output.println("\nText with replaced words:");
+
         while((c = text.read()) != -1){
             buffer.add(Character.toString((char) c));
             automaton.stepForward((char) c);

@@ -33,7 +33,9 @@ public class Censor extends Algorithm {
     public PrintWriter run() throws IOException{
         int c;
         List<Character> buffer = new ArrayList<Character>();
-
+        
+        output.println("\nCensored text:");
+        
         while((c = text.read()) != -1){
             buffer.add((char) c);
             automaton.stepForward((char) c);
