@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @see Automaton
  */
 public class MemoryAutomaton extends Automaton{
-    private List<Node> prevStates;
+    private final List<Node> prevStates;
 
     /**
      * constructor
@@ -25,7 +25,7 @@ public class MemoryAutomaton extends Automaton{
     /**
      * builds MemoryAutomaton
      * @param words (array of words to build MemoryAutomaton with)
-     * @returns MemoryAutomaton
+     * @return MemoryAutomaton
      */
     static public MemoryAutomaton build(String[] words){
         MemoryAutomaton automaton = new MemoryAutomaton();

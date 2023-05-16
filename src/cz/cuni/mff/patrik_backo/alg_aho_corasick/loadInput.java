@@ -15,12 +15,12 @@ public class loadInput {
     
     /**
      * Argument parser
-     * @param arguments (arguments from command line)
-     * @param input_reader (for loading user chosen words)
+     * @param args (arguments from command line)
+     * @param reader (for loading user chosen words)
      * @return Instance of algorithm chosen by option in arguments
-     * @throws IllegalArgumentException
-     * @throws IOException
-     * @throws IndexOutOfBoundsException
+     * @throws IllegalArgumentException when invalid argument count or option
+     * @throws IOException when opening a file fails
+     * @throws IndexOutOfBoundsException when wrong format of input for replacer option
      */
     public static Algorithm parseArguments(String[] args, BufferedReader reader) throws IllegalArgumentException, IOException, IndexOutOfBoundsException{
         String[] words;
@@ -31,22 +31,25 @@ public class loadInput {
         }
         else if (args.length == 1) {
             switch (args[0]) {
-                case "counter":
+                case "counter" -> {
                     words = loadWords(reader).toArray(String[]::new);
                     return new Counter(reader, new PrintWriter(System.out), words);
-                case "signal":
+                }
+                case "signal" -> {
                     words = loadWords(reader).toArray(String[]::new);
-                    return new SignalPossition(reader, new PrintWriter(System.out), words);
-                case "censor":
+                    return new SignalPosition(reader, new PrintWriter(System.out), words);
+                }
+                case "censor" -> {
                     words = loadWords(reader).toArray(String[]::new);
                     return new Censor(reader, new PrintWriter(System.out), words);
-                case "replacer":
+                }
+                case "replacer" -> {
                     map = loadReplacerMap(reader);
                     words = map.keySet().toArray(String[]::new);
                     return new Replacer(reader, new PrintWriter(System.out), words, map);
-                default:
-                    throw new IllegalArgumentException("Invalid option");
-            }  
+                }
+                default -> throw new IllegalArgumentException("Invalid option");
+            }
         }
         else if (args.length == 2) {
             if (args[0].equals("censor")) {
@@ -68,10 +71,10 @@ public class loadInput {
      * Format is: one word per line, and end input stream with "END"
      * @param reader (for loading of user chosen words)
      * @return List of user chosen words
-     * @throws IOException
+     * @throws IOException when opening a file fails
      */
     public static List<String> loadWords(BufferedReader reader) throws IOException{
-        List<String> words = new ArrayList<String>();
+        List<String> words = new ArrayList<>();
             String line = reader.readLine();
             while (!line.equals("END")) {
                 words.add(line);
@@ -81,15 +84,15 @@ public class loadInput {
     }
 
     /**
-     * Loades words and their replacements and stores them in a hash map.
+     * Loads words and their replacements and stores them in a hash map.
      * Format is: "word:replacement" per line, and end input stream with "END"
      * @param reader (for loading of user chosen words)
      * @return hash map with chosen words as keys and replacements as values
-     * @throws IOException
-     * @throws IndexOutOfBoundsException
+     * @throws IOException when opening a file fails
+     * @throws IndexOutOfBoundsException when wrong format of input for replacer option
      */
     public static HashMap<String, String> loadReplacerMap(BufferedReader reader) throws IOException, IndexOutOfBoundsException{
-        HashMap<String, String> dict = new HashMap<String, String>();
+        HashMap<String, String> dict = new HashMap<>();
             String line = reader.readLine();
             while (!line.equals("END")) {
                 String[] words = line.split(":");
@@ -101,14 +104,13 @@ public class loadInput {
 
     /**
      * Create Censor hash map for censoring with censor char algorithm
-     * for every word from input, stores it as key of hashmap and value is word lengh * "censor char"
+     * for every word from input, stores it as key of hashmap and value is word length * "censor char"
      * @param words (words to be censored)
      * @param censorChar (char to be used for censoring)
-     * @return hashmap
-     * @throws IOException
+     * @return hashmap with words as keys and censor char as values
      */
-    public static HashMap<String, String> createCensorMap(String[] words, String censorChar) throws IOException{
-        HashMap<String, String> map = new HashMap<String, String>();
+    public static HashMap<String, String> createCensorMap(String[] words, String censorChar){
+        HashMap<String, String> map = new HashMap<>();
             for (String word : words) {
                 map.put(word, censorChar.repeat(word.length()));
             }

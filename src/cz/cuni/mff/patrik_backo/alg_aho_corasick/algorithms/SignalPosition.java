@@ -5,10 +5,10 @@ import java.io.PrintWriter;
 import java.io.Reader;
 
 /**
- * class SignalPossition, extension of Algorithm - prints positions of every word from words in text
+ * class SignalPosition, extension of Algorithm - prints positions of every word from words in text
  * @see Algorithm
  */
-public class SignalPossition extends Algorithm{
+public class SignalPosition extends Algorithm{
 
     /**
      * constructor, calls super constructor
@@ -16,25 +16,25 @@ public class SignalPossition extends Algorithm{
      * @param output (output to write to)
      * @param words (words to search for)
      */
-    public SignalPossition(Reader text, PrintWriter output, String[] words){
+    public SignalPosition(Reader text, PrintWriter output, String[] words){
         super(text, output, words);
     }
 
     /**
      * prints positions of every word from words in text
      * @return PrintWriter with positions
-     * @throws IOException
+     * @throws IOException when opening a file fails
      */
     public PrintWriter run() throws IOException{
         int c;
-        int possition = 1;
+        int position = 1;
         output.println("\nPositions:");
         while((c = text.read()) != -1){
             automaton.stepForward((char) c);
             for(String word : automaton.getWords()){
-                output.println(word + ": [" + (possition - word.length()) + "," + (possition - 1) + "]");
+                output.println(word + ": [" + (position - word.length()) + "," + (position - 1) + "]");
             }
-            possition++;
+            position++;
         }
         output.flush();
         return output;

@@ -31,7 +31,7 @@ public abstract class Algorithm {
     /**
      * abstract method run
      * @return PrintWriter
-     * @throws IOException
+     * @throws IOException when opening a file fails
      */
     public abstract PrintWriter run() throws IOException;
 }

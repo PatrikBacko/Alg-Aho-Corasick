@@ -6,15 +6,15 @@ import java.io.Reader;
 import java.util.HashMap;
 
 /**
- * class Counter, extension of Algorithm - counts occurences of words in text
+ * class Counter, extension of Algorithm - counts occurrences of words in text
  * @see Algorithm
  */
 public class Counter extends Algorithm{
-    private HashMap<String, Integer> counter;
+    private final HashMap<String, Integer> counter;
 
     /**
      * constructor, calls super constructor
-     * hashmap is used to store occurences of words
+     * hashmap is used to store occurrences of words
      * @param text text to search in
      * @param output output to write to
      * @param words words to search for
@@ -25,9 +25,9 @@ public class Counter extends Algorithm{
     }
 
     /**
-     * counts occurences of words in text
-     * @return PrintWriter with counted occurences
-     * @throws IOException
+     * counts occurrences of words in text
+     * @return PrintWriter with counted occurrences
+     * @throws IOException when opening a file fails
      */
     public PrintWriter run() throws IOException{
         int c;
@@ -41,7 +41,7 @@ public class Counter extends Algorithm{
                 }
             }
         }
-        output.println("\nCounted occurences:");
+        output.println("\nCounted occurrences:");
         for(String word : words){
             if(counter.containsKey(word)){
                 output.println(word + " - " + counter.get(word));

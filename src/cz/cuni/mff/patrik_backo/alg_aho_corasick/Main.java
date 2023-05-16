@@ -29,7 +29,7 @@ public class Main {
             printHelp();
         }
         catch (IndexOutOfBoundsException e) {
-            System.out.println(">>> Error: you have worng format of input, you have to enter <word>:<replecement> per line\n");
+            System.out.println(">>> Error: you have wrong format of input, you have to enter <word>:<replacement> per line\n");
             printHelp();
         }
     }
@@ -37,7 +37,7 @@ public class Main {
     public static void printHelp(){
         System.out.println(">>> Usage: java -jar alg_aho_corasick.jar [option]");
         System.out.println("> Options:");
-        System.out.println("\t- counter: counts occurences of words in text");
+        System.out.println("\t- counter: counts occurrences of words in text");
         System.out.println("\t- signal: prints positions of words in text");
         System.out.println("\t- replacer: replaces words in text");
         System.out.println("\t- censor: removes/censors words in text");

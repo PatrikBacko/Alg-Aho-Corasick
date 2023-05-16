@@ -15,7 +15,7 @@ public class Censor extends Algorithm {
 
     /**
      * Constructor, calls super constructor
-     * MemoryAutomaton is used because after removeing word from text, we need to load past automaton state
+     * MemoryAutomaton is used because after removing word from text, we need to load past automaton state
      * @param text text to search in
      * @param output output to write to
      * @param words words to search for
@@ -28,11 +28,11 @@ public class Censor extends Algorithm {
     /**
      * Censors (removes) words from given text
      * @return PrintWriter with censored text
-     * @throws IOException
+     * @throws IOException when opening a file fails
      */
     public PrintWriter run() throws IOException{
         int c;
-        List<Character> buffer = new ArrayList<Character>();
+        List<Character> buffer = new ArrayList<>();
         
         output.println("\nCensored text:");
         

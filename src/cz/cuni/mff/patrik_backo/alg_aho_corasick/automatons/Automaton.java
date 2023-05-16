@@ -28,7 +28,7 @@ public class Automaton{
     /**
      * builds Automaton
      * @param words (array of words to build Automaton with)
-     * @returns Automaton
+     * @return Automaton
      */
     static public Automaton build(String[] words){
         Automaton automaton = new Automaton();
@@ -147,7 +147,7 @@ public class Automaton{
 
     /**
      * finds words in with given node
-     * @param Node (node to find words with)
+     * @param currNode (node to find words with)
      * @return list of words in current state
      */
     protected List<String> findWords(Node currNode){

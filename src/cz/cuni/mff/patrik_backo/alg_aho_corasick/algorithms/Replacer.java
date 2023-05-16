@@ -12,7 +12,7 @@ import java.io.Reader;
  * @see Algorithm
  */
 public class Replacer extends Algorithm{
-    private HashMap<String, String> wordMap;
+    private final HashMap<String, String> wordMap;
 
     /**
      * constructor, calls super constructor
@@ -30,11 +30,11 @@ public class Replacer extends Algorithm{
     /**
      * replaces words in text with words from hashmap
      * @return PrintWriter with replaced words
-     * @throws IOException
+     * @throws IOException when opening a file fails
      */
     public PrintWriter run() throws IOException{
         int c;
-        List<String> buffer = new ArrayList<String>();
+        List<String> buffer = new ArrayList<>();
 
         output.println("\nText with replaced words:");
 
